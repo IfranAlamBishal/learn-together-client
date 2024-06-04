@@ -11,3 +11,10 @@ body{
     display: flex;
     justify-content: center;
   }
+
+  .errorBg {
+    background-image: url(../src/assets/bg/4212810.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
