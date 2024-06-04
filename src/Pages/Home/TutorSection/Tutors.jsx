@@ -62,7 +62,7 @@ const Tutors = () => {
                     <img src="https://i.ibb.co/kytQBqP/b-02.webp" alt="" className=' h-[60px] md:h-40 lg:h-64 w-full'/>
                     <div className=' text-white bg-gray-500 text-center p-0.5'>
                         <h2 className=' text-lg md:text-2xl font-bold'>Jodi Cooperman</h2>
-                        <p className=' text-xs lg:text-base'>Applied Microeconomics</p>
+                        <p className=' text-xs lg:text-base'>Economics</p>
                     </div>
                 </SwiperSlide>
             </Swiper>
