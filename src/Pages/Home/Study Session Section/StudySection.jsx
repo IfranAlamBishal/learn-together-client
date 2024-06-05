@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
-import SectionHeader from "../../../Shared/SectionHeader/SectionHeader";
+import SectionHeader from "../../Shared/SectionHeader/SectionHeader";
 import SessionCard from "./SessionCard";
 import { Link } from "react-router-dom";
+import useAxios from "../../../Hooks/useAxios";
 
 const StudySection = () => {
 
     const [sessions, setSessions] = useState([])
+    const axiosSecure = useAxios();
 
     useEffect(() => {
-        fetch('/public/studySessions.json')
-            .then(res => res.json())
-            .then(data => setSessions(data))
-    }, [])
+        axiosSecure.get('/approvedSessions')
+            .then(res => {
+                setSessions(res.data)
+            })
+    }, [axiosSecure])
 
     const displayCards = sessions.slice(0, 6)
+
+    const scrollUp = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
 
     return (
         <div className=" w-5/6 mx-auto my-14">
@@ -27,7 +37,7 @@ const StudySection = () => {
                 }
             </div>
             <div className=" card-actions justify-center my-5">
-                <Link className=" btn btn-neutral font-semibold text-xl ">View More</Link>
+                <Link to='/study_sessions' onClick={scrollUp} className=" btn btn-neutral font-semibold text-xl ">View More</Link>
             </div>
 
         </div>

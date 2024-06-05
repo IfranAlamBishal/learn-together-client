@@ -20,9 +20,9 @@
         "registration_open": "2024-06-03",
         "registration_close": "2024-06-13",
         "class_start": "9:00 AM",
-        "class_end": "11:00 AM",
-        "duration": "2 hours",
-        "fees": "2000",
+        "class_end": "12:00 PM",
+        "duration": "3 hours",
+        "fees": "4000",
         "status": "approved"
     },
     {
@@ -35,7 +35,7 @@
         "class_start": "3:00 PM",
         "class_end": "5:00 PM",
         "duration": "2 hours",
-        "fees": "2000",
+        "fees": "3000",
         "status": "approved"
     },
     {
@@ -48,7 +48,7 @@
         "class_start": "3:00 PM",
         "class_end": "5:00 PM",
         "duration": "2 hours",
-        "fees": "2000",
+        "fees": "4000",
         "status": "approved"
     },
     {
@@ -61,7 +61,7 @@
         "class_start": "10:00 AM",
         "class_end": "12:00 PM",
         "duration": "2 hours",
-        "fees": "2000",
+        "fees": "3000",
         "status": "approved"
     },
     {
@@ -74,7 +74,7 @@
         "class_start": "2:00 PM",
         "class_end": "4:00 PM",
         "duration": "2 hours",
-        "fees": "2000",
+        "fees": "5000",
         "status": "approved"
     },
     {
@@ -85,9 +85,9 @@
         "registration_open": "2024-06-05",
         "registration_close": "2024-06-15",
         "class_start": "2:00 PM",
-        "class_end": "4:00 PM",
-        "duration": "2 hours",
-        "fees": "2000",
+        "class_end": "5:00 PM",
+        "duration": "3 hours",
+        "fees": "4000",
         "status": "approved"
     },
     {
@@ -98,9 +98,9 @@
         "registration_open": "2024-06-10",
         "registration_close": "2024-06-20",
         "class_start": "4:00 PM",
-        "class_end": "6:00 PM",
-        "duration": "2 hours",
-        "fees": "2000",
+        "class_end": "8:00 PM",
+        "duration": "4 hours",
+        "fees": "6000",
         "status": "approved"
     },
     {
@@ -113,7 +113,7 @@
         "class_start": "2:00 PM",
         "class_end": "4:00 PM",
         "duration": "2 hours",
-        "fees": "2000",
+        "fees": "4000",
         "status": "approved"
     }
 ]

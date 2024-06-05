@@ -4,6 +4,9 @@ import {
 import Main from "../Layouts/Main/Main";
 import Home from "../Pages/Home/Home";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import AllStudySessions from "../Pages/AllStudySessions/AllStudySessions";
+import SessionDetails from "../Pages/Home/Study Session Section/SessionDetails";
+import LogIn from "../Pages/LogIn/LogIn";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +17,19 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>
+            },
+            {
+                path: "/study_sessions",
+                element: <AllStudySessions></AllStudySessions>
+            },
+            {
+                path: "/details/:id",
+                element: <SessionDetails></SessionDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+            },
+            {
+                path: "/login",
+                element: <LogIn></LogIn>
             }
         ]
     },

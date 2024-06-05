@@ -14,12 +14,12 @@ const Navbar = () => {
                 </ul>
             </details>
         </li> */}
-        <li><NavLink to='/all_sessions'>Study Sessions</NavLink></li>
+        <li><NavLink to='/study_sessions'>Study Sessions</NavLink></li>
     </>
 
     const navBtns = <div className=" mr-4 mt-3 md:mt-0 flex flex-row gap-2 ">
-        <Link className="btn w-20 text-white bg-gray-400">Log in</Link>
-        <Link className="btn w-20 text-white bg-gray-500">Register</Link>
+        <Link to='/login' className="btn w-20 text-white bg-gray-400">Log in</Link>
+        <Link to='/register' className="btn w-20 text-white bg-gray-500">Register</Link>
     </div>
 
     return (
