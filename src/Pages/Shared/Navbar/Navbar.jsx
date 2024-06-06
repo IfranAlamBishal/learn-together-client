@@ -1,25 +1,53 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../../assets/Logo/icon.png'
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
 
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {
+            Swal.fire({
+                icon: "success",
+                title: "Logged Out!",
+                text: "You have successfully logged out!",
+            });
+        })
+
+        .catch(error => {
+            Swal.fire({
+                icon: "error",
+                title: "Oops !",
+                text: error.massage,
+            });
+        })
+    }
+
     const navRoutes = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        {/* <li>
-            <details>
-                <summary>Parent</summary>
-                <ul className="p-2 bg-black bg-opacity-40 text-white">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                </ul>
-            </details>
-        </li> */}
         <li><NavLink to='/study_sessions'>Study Sessions</NavLink></li>
+        {
+            user && <li><NavLink to=''>Dashboard</NavLink></li>
+        }
     </>
 
     const navBtns = <div className=" mr-4 mt-3 md:mt-0 flex flex-row gap-2 ">
-        <Link to='/login' className="btn w-20 text-white bg-gray-400">Log in</Link>
-        <Link to='/register' className="btn w-20 text-white bg-gray-500">Register</Link>
+        {
+            user ? <>
+                <div className="tooltip tooltip-bottom pt-2 pl-2" data-tip={user.email}>
+                    <Link to='' ><img src={user.photoURL} alt="" className="w-8 h-8 my-auto rounded-full " /></Link>
+                </div>
+                <Link to='/' onClick={handleLogOut} className="btn w-24 text-white bg-gray-500">Log Out</Link>
+            </> :
+                <>
+                    <Link to='/login' className="btn w-20 text-white bg-gray-400">Log in</Link>
+                    <Link to='/register' className="btn w-20 text-white bg-gray-500">Register</Link>
+                </>
+        }
     </div>
 
     return (
