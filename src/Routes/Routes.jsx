@@ -7,6 +7,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import AllStudySessions from "../Pages/AllStudySessions/AllStudySessions";
 import SessionDetails from "../Pages/Home/Study Session Section/SessionDetails";
 import LogIn from "../Pages/LogIn/LogIn";
+import Register from "../Pages/Register/Register";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: "/login",
                 element: <LogIn></LogIn>
+            },
+            {
+                path: "/register",
+                element: <Register></Register>
             }
         ]
     },
