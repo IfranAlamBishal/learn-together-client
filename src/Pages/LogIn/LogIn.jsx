@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const LogIn = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { googleLogIn } = useContext(AuthContext);
+    const { logIn, googleLogIn, gitLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,30 +17,40 @@ const LogIn = () => {
     const onSubmit = data => {
         console.log(data)
 
-        // createUser(data.email, data.password)
-        //     .then(() => {
-        //         Swal.fire({
-        //             icon: "success",
-        //             title: "Registered !",
-        //             text: "You have successfully registered!",
-        //         });
-        //         updateName(data.name);
-        //         updatePhoto(data.photo);
-        //         navigate('/');
-        //     })
+        logIn(data.email, data.password)
+            .then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Logged in!",
+                    text: "You have successfully logged in!",
+                });
+                navigate(from, { replace: true });
+            })
 
-        //     .catch(error => {
-        //         Swal.fire({
-        //             icon: "error",
-        //             title: "Oops !",
-        //             text: error.massage,
-        //         });
-        //     })
+            .catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops !",
+                    text: error.massage,
+                });
+            })
 
     };
 
     const handleGoogleLogIn = () => {
         googleLogIn()
+            .then(() => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Logged in!",
+                    text: "You have successfully logged in!",
+                });
+                navigate(from, { replace: true });
+            })
+    }
+
+    const handleGitHubLogIn = () => {
+        gitLogIn()
             .then(() => {
                 Swal.fire({
                     icon: "success",
@@ -50,6 +60,7 @@ const LogIn = () => {
                 navigate(from, { replace: true });
             })
     }
+
     return (
         <div>
             <Helmet>
@@ -83,8 +94,9 @@ const LogIn = () => {
                                 <input type="submit" className="btn btn-neutral" value='Login'></input>
                             </div>
                         </form>
-                        <div className=" px-8  mb-8">
+                        <div className=" px-8  mb-8 space-y-8">
                             <button onClick={handleGoogleLogIn} className="btn btn-neutral w-full">Google</button>
+                            <button onClick={handleGitHubLogIn} className="btn btn-neutral w-full">GitHub</button>
                         </div>
                     </div>
                 </div>

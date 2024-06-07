@@ -9,7 +9,7 @@ import useAxios from "../../Hooks/useAxios";
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateName, updatePhoto, googleLogIn } = useContext(AuthContext);
+    const { createUser, updateName, updatePhoto, googleLogIn, gitLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosSecure = useAxios()
 
@@ -62,7 +62,28 @@ const Register = () => {
                     email: result.user.email,
                     role: 'student'
                 }
-                console.log(user)
+                axiosSecure.post('/createUser', user)
+                .then(res => {
+                    console.log(res.data)
+                })
+                navigate('/');
+            })
+    }
+
+    const handleGitHubLogIn = () => {
+        gitLogIn()
+            .then(result => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Registered !",
+                    text: "You have successfully registered!",
+                });
+                
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: 'student'
+                }
                 axiosSecure.post('/createUser', user)
                 .then(res => {
                     console.log(res.data)
@@ -126,8 +147,9 @@ const Register = () => {
                                 <input type="submit" className="btn btn-neutral" value='Register'></input>
                             </div>
                         </form>
-                        <div className=" px-8  mb-8">
+                        <div className=" px-8  mb-8 space-y-8">
                             <button onClick={handleGoogleLogIn} className="btn btn-neutral w-full">Google</button>
+                            <button onClick={handleGitHubLogIn} className="btn btn-neutral w-full">GitHub</button>
                         </div>
                     </div>
                 </div>
