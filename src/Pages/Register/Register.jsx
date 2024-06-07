@@ -4,15 +4,16 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateName, updatePhoto, googleLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const axiosSecure = useAxios()
 
     const onSubmit = data => {
-        console.log(data)
 
         createUser(data.email, data.password)
             .then(() => {
@@ -23,6 +24,17 @@ const Register = () => {
                 });
                 updateName(data.name);
                 updatePhoto(data.photo);
+
+                const user = {
+                    name: data.name,
+                    email: data.email,
+                    role: data.role
+                }
+
+                axiosSecure.post('/createUser', user)
+                .then(res => {
+                    console.log(res.data)
+                })
                 navigate('/');
             })
 
@@ -38,14 +50,25 @@ const Register = () => {
 
     const handleGoogleLogIn = () => {
         googleLogIn()
-        .then(() => {
-            Swal.fire({
-                icon: "success",
-                title: "Registered !",
-                text: "You have successfully registered!",
-            });
-            navigate('/');
-        })
+            .then(result => {
+                Swal.fire({
+                    icon: "success",
+                    title: "Registered !",
+                    text: "You have successfully registered!",
+                });
+                
+                const user = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    role: 'student'
+                }
+                console.log(user)
+                axiosSecure.post('/createUser', user)
+                .then(res => {
+                    console.log(res.data)
+                })
+                navigate('/');
+            })
     }
 
 

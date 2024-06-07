@@ -21,7 +21,6 @@ const AllStudySessions = () => {
     useEffect(() => {
         axiosSecure.get('/approvedSessions')
             .then(res => {
-                // console.log(res.data)
                 setSessions(res.data)
             })
     }, [axiosSecure])
