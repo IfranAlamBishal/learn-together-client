@@ -3,12 +3,15 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const LogIn = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { googleLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
 
     const onSubmit = data => {
@@ -44,7 +47,7 @@ const LogIn = () => {
                     title: "Registered !",
                     text: "You have successfully registered!",
                 });
-                navigate('/');
+                navigate(from, { replace: true });
             })
     }
     return (

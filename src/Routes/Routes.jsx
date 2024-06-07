@@ -8,6 +8,7 @@ import AllStudySessions from "../Pages/AllStudySessions/AllStudySessions";
 import SessionDetails from "../Pages/Home/Study Session Section/SessionDetails";
 import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/details/:id",
-                element: <SessionDetails></SessionDetails>,
+                element: <ProtectedRoutes><SessionDetails></SessionDetails></ProtectedRoutes>,
                 loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
             },
             {
