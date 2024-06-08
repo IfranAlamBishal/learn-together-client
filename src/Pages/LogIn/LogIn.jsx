@@ -54,8 +54,8 @@ const LogIn = () => {
             .then(() => {
                 Swal.fire({
                     icon: "success",
-                    title: "Registered !",
-                    text: "You have successfully registered!",
+                    title: "Logged in!",
+                    text: "You have successfully logged in!",
                 });
                 navigate(from, { replace: true });
             })

@@ -54,7 +54,7 @@ const Register = () => {
                 })
 
         }
-        else{
+        else {
             Swal.fire({
                 icon: "error",
                 title: "Oops !",
@@ -68,21 +68,31 @@ const Register = () => {
     const handleGoogleLogIn = () => {
         googleLogIn()
             .then(result => {
-                Swal.fire({
-                    icon: "success",
-                    title: "Registered !",
-                    text: "You have successfully registered!",
-                });
+                const alreadyUser = users.filter(user => user.email == result.user.email)
+                if (alreadyUser.length == 0) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registered !",
+                        text: "You have successfully registered!",
+                    });
 
-                const user = {
-                    name: result.user.displayName,
-                    email: result.user.email,
-                    role: 'student'
+                    const user = {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        role: 'student'
+                    }
+                    axiosSecure.post('/createUser', user)
+                        .then(res => {
+                            console.log(res.data)
+                        })
                 }
-                axiosSecure.post('/createUser', user)
-                    .then(res => {
-                        console.log(res.data)
-                    })
+                else {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Logged in!",
+                        text: "You have successfully logged in!",
+                    });
+                }
                 navigate('/');
             })
     }
@@ -90,21 +100,31 @@ const Register = () => {
     const handleGitHubLogIn = () => {
         gitLogIn()
             .then(result => {
-                Swal.fire({
-                    icon: "success",
-                    title: "Registered !",
-                    text: "You have successfully registered!",
-                });
+                const alreadyUser = users.filter(user => user.email == result.user.email)
+                if (alreadyUser.length == 0) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registered !",
+                        text: "You have successfully registered!",
+                    });
 
-                const user = {
-                    name: result.user.displayName,
-                    email: result.user.email,
-                    role: 'student'
+                    const user = {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        role: 'student'
+                    }
+                    axiosSecure.post('/createUser', user)
+                        .then(res => {
+                            console.log(res.data)
+                        })
                 }
-                axiosSecure.post('/createUser', user)
-                    .then(res => {
-                        console.log(res.data)
-                    })
+                else {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Logged in!",
+                        text: "You have successfully logged in!",
+                    });
+                }
                 navigate('/');
             })
     }

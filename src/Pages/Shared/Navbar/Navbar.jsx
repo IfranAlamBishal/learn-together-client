@@ -31,7 +31,7 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/study_sessions'>Study Sessions</NavLink></li>
         {
-            user && <li><NavLink to=''>Dashboard</NavLink></li>
+            user && <li><NavLink to='/dashboard/profile'>Dashboard</NavLink></li>
         }
     </>
 
@@ -39,7 +39,7 @@ const Navbar = () => {
         {
             user ? <>
                 <div className="tooltip tooltip-bottom pt-2 pl-2" data-tip={user.email}>
-                    <Link to='' ><img src={user.photoURL} alt="" className="w-8 h-8 my-auto rounded-full " /></Link>
+                    <Link to='/dashboard/profile' ><img src={user.photoURL} alt="" className="w-8 h-8 my-auto rounded-full " /></Link>
                 </div>
                 <Link to='/' onClick={handleLogOut} className="btn w-24 text-white bg-gray-500">Log Out</Link>
             </> :

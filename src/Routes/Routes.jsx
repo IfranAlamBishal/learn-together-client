@@ -9,6 +9,8 @@ import SessionDetails from "../Pages/Home/Study Session Section/SessionDetails";
 import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Dashboard from "../Layouts/Main/Dashboard";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -39,4 +41,16 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
+
+            {
+                path: "profile",
+                element: <Profile></Profile>
+            }
+        ]
+    }
 ]);

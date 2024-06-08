@@ -1,23 +1,29 @@
-import { useEffect, useState } from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
-import useAxios from "../../../Hooks/useAxios";
+import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SessionDetails = () => {
     const details = useLoaderData();
     const { title, tutor_name, description, registration_open, registration_close, class_start, class_end, duration, fees, rating } = details;
 
-    // const [details , setDetails] = useState([])
-    // const axiosSecure = useAxios();
-    // const id = useParams()
-
-    // useEffect(() => {
-    //     axiosSecure.get(`/details/${id}`)
-    //         .then(res => {
-    //             // console.log(res.data)
-    //             setDetails(res.data)
-    //         })
-    // }, [axiosSecure])
-
+    const handleBooking = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to book this session?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, book it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Booked!",
+                    text: "You;ve successfully booked this session.",
+                    icon: "success"
+                });
+            }
+        });
+    }
 
     return (
         <div className=" w-2/3 mx-auto pt-28">
@@ -33,7 +39,7 @@ const SessionDetails = () => {
                     <p className=" text-2xl font-semibold mb-4">Fees: {fees}</p>
 
                     <div className="card-actions justify-center mt-3">
-                        <Link className="btn font-semibold">Book Now</Link>
+                        <Link onClick={handleBooking} className="btn font-semibold">Book Now</Link>
                     </div>
                 </div>
             </div>
