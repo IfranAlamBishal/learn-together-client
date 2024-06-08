@@ -10,7 +10,8 @@ import LogIn from "../Pages/LogIn/LogIn";
 import Register from "../Pages/Register/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Dashboard from "../Layouts/Main/Dashboard";
-import Profile from "../Pages/Profile/Profile";
+import Profile from "../Pages/DashboardPages/Profile/Profile";
+import ViewBookedSessions from "../Pages/DashboardPages/ViewBookedSessions/ViewBookedSessions";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
             {
                 path: "profile",
                 element: <Profile></Profile>
+            },
+            {
+                path: "booked_sessions",
+                element: <ViewBookedSessions></ViewBookedSessions>
             }
         ]
     }

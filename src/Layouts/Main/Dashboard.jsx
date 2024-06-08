@@ -11,7 +11,7 @@ const Dashboard = () => {
         <li><NavLink>View all study materials</NavLink></li>
     </ul>
     return (
-        <div className=" flex flex-col md:flex-row">
+        <div className=" flex flex-col md:flex-row gap-10">
             <div className=" md:w-64 lg:w-72  md:min-h-screen p-5 bg-gray-500 text-white">
                 <Link to='/' className="btn btn-ghost text-xl md:text-2xl font-bold text-left h-[60px] md:h-[68px] mb-4">
                     <img src={logo} alt="" className=' w-10 h-10' />

@@ -35,7 +35,7 @@ const Navbar = () => {
         }
     </>
 
-    const navBtns = <div className=" mr-4 mt-3 md:mt-0 flex flex-row gap-2 ">
+    const navBtns = <div className=" mr-4 mt-3 md:mt-0 flex flex-col md:flex-row gap-2 ">
         {
             user ? <>
                 <div className="tooltip tooltip-bottom pt-2 pl-2" data-tip={user.email}>

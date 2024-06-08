@@ -7,14 +7,18 @@ const ProtectedRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
-    if(loading){
-        return <span className="loading loading-infinity w-24"></span>
+    if (loading) {
+        return <div className="flex justify-center">
+            {
+                <span className="loading loading-infinity w-24"></span>
+            }
+        </div>
     }
     if (user) {
         return children;
     }
-    else{
-        return <Navigate to='/login' state={{from: location}}></Navigate>
+    else {
+        return <Navigate to='/login' state={{ from: location }}></Navigate>
     }
 };
 
