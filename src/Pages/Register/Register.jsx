@@ -5,46 +5,63 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
+import useUserData from "../../Hooks/useUserData";
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateName, updatePhoto, googleLogIn, gitLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
-    const axiosSecure = useAxios()
+    const axiosSecure = useAxios();
+    const [users] = useUserData();
 
     const onSubmit = data => {
 
-        createUser(data.email, data.password)
-            .then(() => {
-                Swal.fire({
-                    icon: "success",
-                    title: "Registered !",
-                    text: "You have successfully registered!",
-                });
-                updateName(data.name);
-                updatePhoto(data.photo);
+        const alreadyUser = users.filter(user => user.email == data.email)
+        console.log(alreadyUser);
 
-                const user = {
-                    name: data.name,
-                    email: data.email,
-                    role: data.role
-                }
+        if (alreadyUser.length == 0) {
+            createUser(data.email, data.password)
+                .then(() => {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registered !",
+                        text: "You have successfully registered!",
+                    });
+                    updateName(data.name);
+                    updatePhoto(data.photo);
 
-                axiosSecure.post('/createUser', user)
-                .then(res => {
-                    console.log(res.data)
+
+                    const user = {
+                        name: data.name,
+                        email: data.email,
+                        role: data.role
+                    }
+
+                    axiosSecure.post('/createUser', user)
+                        .then(res => {
+                            console.log(res.data)
+                        })
+                    navigate('/');
                 })
-                navigate('/');
-            })
 
-            .catch(error => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops !",
-                    text: error.massage,
-                });
-            })
+                .catch(error => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops !",
+                        text: error.massage,
+                    });
+                })
+
+        }
+        else{
+            Swal.fire({
+                icon: "error",
+                title: "Oops !",
+                text: "This email is associated with an existing account. Please use another email.",
+            });
+        }
+
 
     };
 
@@ -56,16 +73,16 @@ const Register = () => {
                     title: "Registered !",
                     text: "You have successfully registered!",
                 });
-                
+
                 const user = {
                     name: result.user.displayName,
                     email: result.user.email,
                     role: 'student'
                 }
                 axiosSecure.post('/createUser', user)
-                .then(res => {
-                    console.log(res.data)
-                })
+                    .then(res => {
+                        console.log(res.data)
+                    })
                 navigate('/');
             })
     }
@@ -78,16 +95,16 @@ const Register = () => {
                     title: "Registered !",
                     text: "You have successfully registered!",
                 });
-                
+
                 const user = {
                     name: result.user.displayName,
                     email: result.user.email,
                     role: 'student'
                 }
                 axiosSecure.post('/createUser', user)
-                .then(res => {
-                    console.log(res.data)
-                })
+                    .then(res => {
+                        console.log(res.data)
+                    })
                 navigate('/');
             })
     }
