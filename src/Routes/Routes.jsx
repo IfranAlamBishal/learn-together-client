@@ -12,6 +12,9 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Dashboard from "../Layouts/Main/Dashboard";
 import Profile from "../Pages/DashboardPages/Profile/Profile";
 import ViewBookedSessions from "../Pages/DashboardPages/ViewBookedSessions/ViewBookedSessions";
+import CreateNotes from "../Pages/DashboardPages/CreateNotes/CreateNotes";
+import ManageNotes from "../Pages/DashboardPages/ManageNotes/ManageNotes";
+
 
 export const router = createBrowserRouter([
     {
@@ -44,7 +47,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <ProtectedRoutes><Dashboard></Dashboard></ProtectedRoutes>,
         errorElement: <ErrorPage></ErrorPage>,
         children: [
 
@@ -55,6 +58,14 @@ export const router = createBrowserRouter([
             {
                 path: "booked_sessions",
                 element: <ViewBookedSessions></ViewBookedSessions>
+            },
+            {
+                path: "create_notes",
+                element: <CreateNotes></CreateNotes>
+            },
+            {
+                path: "manage_notes",
+                element: <ManageNotes></ManageNotes>
             }
         ]
     }

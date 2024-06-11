@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
-import useUserData from "../../../Hooks/useUserData";
 
 const Profile = () => {
 
     const { user, loading } = useContext(AuthContext);
-    const [users] = useUserData();
     
     if (loading) {
         return <div className="flex justify-center">
@@ -20,8 +18,6 @@ const Profile = () => {
     }
     if (user) {
         const { displayName, email, photoURL, metadata } = user;
-        const currentUser = users.find(cUser => cUser.email == user.email)
-        const role = currentUser.role
         return (
             <div>
                 <Helmet>
@@ -34,7 +30,6 @@ const Profile = () => {
                         </figure>
                         <div className="card-body items-center text-center">
                             <h2 className="card-title text-2xl md:text-4xl font-bold">{displayName}</h2>
-                            <p className=" text-lg font-semibold">{role}</p>
                             <p className=" text-lg font-semibold">{email}</p>
                             <p className=" text-lg font-semibold"> Joined: {metadata.creationTime}</p>
                             <div className="card-actions my-6">

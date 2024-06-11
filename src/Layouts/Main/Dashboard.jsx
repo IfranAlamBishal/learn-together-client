@@ -1,14 +1,23 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../../../src/assets/Logo/icon.png'
+import useLoggedUser from "../../Hooks/useLoggedUser";
+import { useState } from "react";
+
 
 const Dashboard = () => {
 
+    const loggedUser = useLoggedUser();
+    const userInfo = loggedUser[0];
+
+
+    console.log(userInfo);
+
     const dashLinks = <ul className=" menu px-1 space-y-2 max-w-56">
         <li><NavLink to='/dashboard/profile'>Profile</NavLink></li>
-        <li><NavLink>View booked session</NavLink></li>
-        <li><NavLink>Create note</NavLink></li>
-        <li><NavLink>Manage notes</NavLink></li>
-        <li><NavLink>View all study materials</NavLink></li>
+        <li><NavLink to='/dashboard/booked_sessions'>View booked session</NavLink></li>
+        <li><NavLink to='/dashboard/create_notes'>Create note</NavLink></li>
+        <li><NavLink to='/dashboard/manage_notes'>Manage notes</NavLink></li>
+        <li><NavLink to='/dashboard/booked_sessions'>View all study materials</NavLink></li>
     </ul>
     return (
         <div className=" flex flex-col md:flex-row gap-10">

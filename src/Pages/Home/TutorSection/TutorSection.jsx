@@ -6,7 +6,8 @@ const TutorSection = () => {
         <div className=" my-10">
             <SectionHeader
                 title='Learn from the Best'
-                description='Access unparalleled expertise and guidance from our esteemed team of tutors, dedicated to maximizing your learning potential.'></SectionHeader>
+                description='Access unparalleled expertise and guidance from our esteemed team of tutors, dedicated to maximizing your learning potential.'>
+            </SectionHeader>
             <Tutors></Tutors>
         </div>
     );
