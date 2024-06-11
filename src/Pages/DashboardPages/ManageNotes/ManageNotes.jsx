@@ -1,25 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import SectionHeader from "../../Shared/SectionHeader/SectionHeader";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
-import useAxios from "../../../Hooks/useAxios";
 import TableView from "./TableView";
+import useNotes from "../../../Hooks/useNotes";
 
 const ManageNotes = () => {
 
-    const { user } = useContext(AuthContext);
-    const [notes, setNotes] = useState([]);
-    const axiosSecure = useAxios();
-
-    useEffect(() => {
-        axiosSecure.get('/view_notes')
-            .then(res => {
-                const allNotes = res.data;
-                // const userNotes = allNotes.filter(note => note.student_email == user.email);
-                console.log(allNotes)
-                setNotes([allNotes]);
-            })
-    }, [axiosSecure])
+   const notes = useNotes();
+   console.log(notes);
 
     if (notes.length < 0) {
         return (
@@ -42,7 +29,7 @@ const ManageNotes = () => {
     }
     else {
         return (
-            <div className=" my-10">
+            <div className=" my-10 w-5/6 mx-auto">
                 <Helmet>
                     <title>Learn Together | Manage Notes</title>
                 </Helmet>
@@ -66,7 +53,6 @@ const ManageNotes = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* row 1 */}
                                 {
                                     notes.map(note => <TableView key={note._id} note={note}></TableView>)
                                 }

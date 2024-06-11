@@ -7,7 +7,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 const SessionDetails = () => {
     const details = useLoaderData();
     const { _id, title, tutor_name, description, registration_open, registration_close, class_start, class_end, duration, fees, rating, email } = details;
-
+    console.log(details)
     const axiosSecure = useAxios();
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ const SessionDetails = () => {
                 const booking = {
                     student_email: user.email,
                     tutor_email: email,
-                    session_id : _id
+                    session_id: _id
 
                 }
                 // console.log(booking)

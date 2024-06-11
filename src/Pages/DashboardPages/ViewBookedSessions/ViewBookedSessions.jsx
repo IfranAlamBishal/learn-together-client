@@ -8,8 +8,7 @@ const ViewBookedSessions = () => {
 
 
     const allBookedSessions = useBookedSessionData();
-    const bookedSessions = allBookedSessions.data;
-    console.log(allBookedSessions)
+    // console.log(allBookedSessions)
 
     if (allBookedSessions.length < 0) {
         return (

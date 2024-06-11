@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             {
                 path: "/details/:id",
                 element: <ProtectedRoutes><SessionDetails></SessionDetails></ProtectedRoutes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+                loader: ({ params }) => fetch(`https://learn-together-server-five.vercel.app/${params.id}`)
             },
             {
                 path: "/login",
