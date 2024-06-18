@@ -6,7 +6,7 @@ import useNotes from "../../../Hooks/useNotes";
 const ManageNotes = () => {
 
    const notes = useNotes();
-   console.log(notes);
+//    console.log(notes);
 
     if (notes.length < 0) {
         return (

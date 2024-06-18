@@ -44,7 +44,7 @@ const CreateNotes = () => {
                             text: "You;ve successfully booked this session.",
                             icon: "success"
                         });
-                        navigate('/dashboard/booked_sessions')
+                        navigate('/dashboard/manage_notes')
                     })
 
             }
