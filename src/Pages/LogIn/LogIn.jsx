@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useUserData from "../../Hooks/useUserData";
 import useAxios from "../../Hooks/useAxios";
 
@@ -11,12 +11,21 @@ const LogIn = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { logIn, googleLogIn, gitLogIn } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const axiosSecure = useAxios();
     const [users] = useUserData();
 
     const from = location.state?.from?.pathname || '/';
+
+    const forgotPassword = () => {
+        Swal.fire({
+            icon: "error",
+            title: "Not available!",
+            text: "This feature is not available yet!",
+        });
+    }
 
 
     const onSubmit = data => {
@@ -44,14 +53,6 @@ const LogIn = () => {
 
     const handleGoogleLogIn = () => {
         googleLogIn()
-            // .then(() => {
-            //     Swal.fire({
-            //         icon: "success",
-            //         title: "Logged in!",
-            //         text: "You have successfully logged in!",
-            //     });
-            //     navigate(from, { replace: true });
-            // })
             .then(result => {
                 const alreadyUser = users.filter(user => user.email == result.user.email)
                 if (alreadyUser.length == 0) {
@@ -124,12 +125,25 @@ const LogIn = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" {...register("password", {
+                                <input type={showPassword ? "text" : "password"} {...register("password", {
                                     minLength: 6,
                                     pattern: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
                                 })} placeholder="password" className="input input-bordered bg-white text-black" required />
+                                <div onClick={() => setShowPassword(!showPassword)} className=" text-lg text-blue-600 flex justify-end p-1">
+                                    {
+                                        showPassword ?
+                                            <Link>Hide</Link>
+                                            :
+                                            <Link>Show</Link>
+                                    }
+                                </div>
                                 {errors.password && <span className=" text-xs text-red-600 mt-1">Password must have at least 6 characters including at least a upper case(A-Z) and a lower case(a-z) letter.</span>}
+                                <label className="label">
+                                    <Link onClick={() => forgotPassword()} className="label-text-alt text-blue-600">Forgot password?</Link>
+                                </label>
+                                <p className=" text-base font-medium">New here ? <Link to="/Register" className=" text-blue-600">Register now</Link> and start your journey with us!</p>
                             </div>
+
                             <div className="form-control mt-6">
                                 <input type="submit" className="btn btn-neutral" value='Login'></input>
                             </div>

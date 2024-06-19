@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import useUserData from "../../Hooks/useUserData";
 
@@ -11,6 +11,7 @@ const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateName, updatePhoto, googleLogIn, gitLogIn } = useContext(AuthContext);
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
     const axiosSecure = useAxios();
     const [users] = useUserData();
@@ -174,11 +175,20 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" {...register("password", {
+                                <input type={showPassword ? "text" : "password"} {...register("password", {
                                     minLength: 6,
                                     pattern: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
                                 })} placeholder="password" className="input input-bordered bg-white text-black" required />
+                                <div onClick={() => setShowPassword(!showPassword)} className=" text-lg text-blue-600 flex justify-end p-1">
+                                    {
+                                        showPassword ?
+                                            <Link>Hide</Link>
+                                            :
+                                            <Link>Show</Link>
+                                    }
+                                </div>
                                 {errors.password && <span className=" text-xs text-red-600 mt-1">Password must have at least 6 characters including at least a upper case(A-Z) and a lower case(a-z) letter.</span>}
+                                <p className=" text-base font-medium">Already have an account? <Link to="/logIn" className=" text-blue-600">Log in now</Link> and continue your journey!</p>
                             </div>
                             <div className="form-control mt-6">
                                 <input type="submit" className="btn btn-neutral" value='Register'></input>
