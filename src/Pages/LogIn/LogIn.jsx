@@ -4,12 +4,17 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
+import useUserData from "../../Hooks/useUserData";
+import useAxios from "../../Hooks/useAxios";
+
 const LogIn = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { logIn, googleLogIn, gitLogIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosSecure = useAxios();
+    const [users] = useUserData();
 
     const from = location.state?.from?.pathname || '/';
 
@@ -39,27 +44,62 @@ const LogIn = () => {
 
     const handleGoogleLogIn = () => {
         googleLogIn()
-            .then(() => {
+            // .then(() => {
+            //     Swal.fire({
+            //         icon: "success",
+            //         title: "Logged in!",
+            //         text: "You have successfully logged in!",
+            //     });
+            //     navigate(from, { replace: true });
+            // })
+            .then(result => {
+                const alreadyUser = users.filter(user => user.email == result.user.email)
+                if (alreadyUser.length == 0) {
+                    const user = {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        role: 'student'
+                    }
+                    axiosSecure.post('/createUser', user)
+                        .then(res => {
+                            console.log(res.data)
+                        })
+                }
                 Swal.fire({
                     icon: "success",
                     title: "Logged in!",
                     text: "You have successfully logged in!",
                 });
+
                 navigate(from, { replace: true });
             })
     }
 
     const handleGitHubLogIn = () => {
         gitLogIn()
-            .then(() => {
+            .then(result => {
+                const alreadyUser = users.filter(user => user.email == result.user.email)
+                if (alreadyUser.length == 0) {
+                    const user = {
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        role: 'student'
+                    }
+                    axiosSecure.post('/createUser', user)
+                        .then(res => {
+                            console.log(res.data)
+                        })
+                }
                 Swal.fire({
                     icon: "success",
                     title: "Logged in!",
                     text: "You have successfully logged in!",
                 });
+
                 navigate(from, { replace: true });
             })
     }
+
 
     return (
         <div>

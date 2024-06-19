@@ -3,14 +3,19 @@ import Swal from "sweetalert2";
 import useAxios from "../../../Hooks/useAxios";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import useBookedSessionData from "../../../Hooks/useBookedSessionData";
 
 const SessionDetails = () => {
+
     const details = useLoaderData();
     const { _id, title, tutor_name, description, registration_open, registration_close, class_start, class_end, duration, fees, rating, email } = details;
-    console.log(details)
+    
     const axiosSecure = useAxios();
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const bookedSessions = useBookedSessionData();
+    const isBooked = bookedSessions.find(session => session.session_id == _id);
+    // console.log(isBooked)
 
     const handleBooking = () => {
         Swal.fire({
@@ -60,7 +65,7 @@ const SessionDetails = () => {
                     <p className=" text-2xl mb-4">Fees: {fees}</p>
 
                     <div className="card-actions justify-center mt-3">
-                        <Link onClick={handleBooking} className="btn font-semibold">Book Now</Link>
+                        <Link disabled={isBooked ? true : false} onClick={handleBooking} className="btn bg-white font-semibold">Book Now</Link>
                     </div>
                 </div>
             </div>
