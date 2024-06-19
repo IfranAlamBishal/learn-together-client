@@ -5,15 +5,13 @@ import { Helmet } from "react-helmet-async";
 const Profile = () => {
 
     const { user, loading } = useContext(AuthContext);
-    
+
     if (loading) {
         return <div className="flex justify-center">
             <Helmet>
                 <title>Learn Together | Profile</title>
             </Helmet>
-            {
-                <span className="loading loading-infinity w-24"></span>
-            }
+            <span className="loading loading-infinity w-24"></span>
         </div>
     }
     if (user) {
