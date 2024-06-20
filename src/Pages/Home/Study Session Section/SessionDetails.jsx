@@ -40,7 +40,7 @@ const SessionDetails = () => {
                     .then(() => {
                         Swal.fire({
                             title: "Booked!",
-                            text: "You;ve successfully booked this session.",
+                            text: "You've successfully booked this session.",
                             icon: "success"
                         });
                         navigate('/dashboard/booked_sessions')

@@ -16,7 +16,7 @@ const Dashboard = () => {
         <li><NavLink to='/dashboard/booked_sessions'>View booked session</NavLink></li>
         <li><NavLink to='/dashboard/create_notes'>Create note</NavLink></li>
         <li><NavLink to='/dashboard/manage_notes'>Manage notes</NavLink></li>
-        <li><NavLink to='/dashboard/booked_sessions'>View all study materials</NavLink></li>
+        <li><NavLink to='/dashboard/view_materials'>View all study materials</NavLink></li>
     </ul>
     return (
         <div className=" flex flex-col md:flex-row gap-10">
