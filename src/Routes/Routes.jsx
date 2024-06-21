@@ -15,6 +15,11 @@ import ViewBookedSessions from "../Pages/DashboardPages/ViewBookedSessions/ViewB
 import CreateNotes from "../Pages/DashboardPages/CreateNotes/CreateNotes";
 import ManageNotes from "../Pages/DashboardPages/ManageNotes/ManageNotes";
 import ViewStudyMaterials from "../Pages/DashboardPages/ViewStudyMaterials/ViewStudyMaterials";
+import AllUsers from "../Pages/DashboardPages/AllUsers/AllUsers";
+import PendingSessions from "../Pages/DashboardPages/PendingSessions/PendingSessions";
+import ApprovedSessions from "../Pages/DashboardPages/ApprovedSessions/ApprovedSessions";
+import RejectedSessions from "../Pages/DashboardPages/RejectedSessions/RejectedSessions";
+import AllMaterials from "../Pages/DashboardPages/AllMaterials/AllMaterials";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +76,29 @@ export const router = createBrowserRouter([
             {
                 path: "view_materials",
                 element:  <ViewStudyMaterials></ViewStudyMaterials>
+            },
+
+            //admin routes
+
+            {
+                path: "allUsers",
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: "pendingSessions",
+                element: <PendingSessions></PendingSessions>
+            },
+            {
+                path: "approvedSessions",
+                element: <ApprovedSessions></ApprovedSessions>
+            },
+            {
+                path: "rejectedSessions",
+                element: <RejectedSessions></RejectedSessions>
+            },
+            {
+                path: "allMaterials",
+                element: <AllMaterials></AllMaterials>
             }
         ]
     }

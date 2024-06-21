@@ -7,16 +7,28 @@ const Dashboard = () => {
 
     const loggedUser = useLoggedUser();
     const userInfo = loggedUser[0];
-
+    const isAdmin = true;
 
     console.log(userInfo);
 
     const dashLinks = <ul className=" menu px-1 space-y-2 max-w-56">
         <li><NavLink to='/dashboard/profile'>Profile</NavLink></li>
-        <li><NavLink to='/dashboard/booked_sessions'>View booked session</NavLink></li>
-        <li><NavLink to='/dashboard/create_notes'>Create note</NavLink></li>
-        <li><NavLink to='/dashboard/manage_notes'>Manage notes</NavLink></li>
-        <li><NavLink to='/dashboard/view_materials'>View all study materials</NavLink></li>
+        {
+            isAdmin ? <>
+                <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
+                <li><NavLink to='/dashboard/pendingSessions'>Pending Sessions</NavLink></li>
+                <li><NavLink to='/dashboard/approvedSessions'>Approved Sessions</NavLink></li>
+                <li><NavLink to='/dashboard/rejectedSessions'>Rejected Sessions</NavLink></li>
+                <li><NavLink to='/dashboard/allMaterials'>All Materials</NavLink></li>
+            </>
+                :
+                <>
+                    <li><NavLink to='/dashboard/booked_sessions'>View booked session</NavLink></li>
+                    <li><NavLink to='/dashboard/create_notes'>Create note</NavLink></li>
+                    <li><NavLink to='/dashboard/manage_notes'>Manage notes</NavLink></li>
+                    <li><NavLink to='/dashboard/view_materials'>View all study materials</NavLink></li>
+                </>
+        }
     </ul>
     return (
         <div className=" flex flex-col md:flex-row gap-10">

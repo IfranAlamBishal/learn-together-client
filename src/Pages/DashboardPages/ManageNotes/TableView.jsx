@@ -24,7 +24,7 @@ const TableView = ({ note }) => {
 
                 axiosSecure.delete(`/delete_notes/${id}`)
                     .then(res => {
-                        if(res.data.deletedCount > 0){
+                        if (res.data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "You've successfully deleted the note.",
@@ -41,7 +41,7 @@ const TableView = ({ note }) => {
         <tr>
             <th>{title}</th>
             <td>{description}</td>
-            <td><button onClick={handleUpdate} className="btn btn-neutral text-xs">Uptade</button></td>
+            <td><button onClick={() => handleUpdate(_id)} className="btn btn-neutral text-xs">Uptade</button></td>
             <td><button onClick={() => handleDelete(_id)} className="btn btn-neutral text-xs">Delete</button></td>
         </tr>
     );
