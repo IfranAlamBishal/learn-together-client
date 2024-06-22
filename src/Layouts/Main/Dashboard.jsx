@@ -23,10 +23,10 @@ const Dashboard = () => {
                 <>
                     {
                         isTutor ? <>
-                            <li><NavLink to='/dashboard/booked_sessions'>Create Study Session</NavLink></li>
-                            <li><NavLink to='/dashboard/create_notes'>View My Study Sessions</NavLink></li>
-                            <li><NavLink to='/dashboard/manage_notes'>Upload Materials</NavLink></li>
-                            <li><NavLink to='/dashboard/view_materials'>View all Materials</NavLink></li>
+                            <li><NavLink to='/dashboard/create_sessions'>Create Study Session</NavLink></li>
+                            <li><NavLink to='/dashboard/my_sessions'>View My Study Sessions</NavLink></li>
+                            <li><NavLink to='/dashboard/upload_materials'>Upload Materials</NavLink></li>
+                            <li><NavLink to='/dashboard/view_allMaterials'>View all Materials</NavLink></li>
                         </>
                             :
                             <>

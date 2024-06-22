@@ -20,6 +20,10 @@ import PendingSessions from "../Pages/DashboardPages/PendingSessions/PendingSess
 import ApprovedSessions from "../Pages/DashboardPages/ApprovedSessions/ApprovedSessions";
 import RejectedSessions from "../Pages/DashboardPages/RejectedSessions/RejectedSessions";
 import AllMaterials from "../Pages/DashboardPages/AllMaterials/AllMaterials";
+import CreateSessions from "../Pages/DashboardPages/CreateSessions/CreateSessions";
+import TutorsStudySessions from "../Pages/DashboardPages/Tutor'sStudySession/TutorsStudySessions";
+import UploadMaterials from "../Pages/DashboardPages/UploadMaterials/UploadMaterials";
+import ViewTutorsMaterials from "../Pages/DashboardPages/ViewTutorsMaterials/ViewTutorsMaterials";
 
 
 export const router = createBrowserRouter([
@@ -76,6 +80,25 @@ export const router = createBrowserRouter([
             {
                 path: "view_materials",
                 element:  <ViewStudyMaterials></ViewStudyMaterials>
+            },
+
+            // Tutor routes 
+
+            {
+                path: "create_sessions",
+                element: <CreateSessions></CreateSessions>
+            },
+            {
+                path: "my_sessions",
+                element: <TutorsStudySessions></TutorsStudySessions>
+            },
+            {
+                path: "upload_materials",
+                element: <UploadMaterials></UploadMaterials>
+            },
+            {
+                path: "view_allMaterials",
+                element: <ViewTutorsMaterials></ViewTutorsMaterials>
             },
 
             //admin routes
