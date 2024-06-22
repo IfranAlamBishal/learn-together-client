@@ -1,11 +1,13 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../../../src/assets/Logo/icon.png'
 import useAdmin from "../../Hooks/useAdmin";
+import useTutor from "../../Hooks/useTutor";
 
 
 const Dashboard = () => {
 
     const [isAdmin] = useAdmin();
+    const [isTutor] = useTutor();
 
     const dashLinks = <ul className=" menu px-1 space-y-2 max-w-56">
         <li><NavLink to='/dashboard/profile'>Profile</NavLink></li>
@@ -19,10 +21,21 @@ const Dashboard = () => {
             </>
                 :
                 <>
-                    <li><NavLink to='/dashboard/booked_sessions'>View booked session</NavLink></li>
-                    <li><NavLink to='/dashboard/create_notes'>Create note</NavLink></li>
-                    <li><NavLink to='/dashboard/manage_notes'>Manage notes</NavLink></li>
-                    <li><NavLink to='/dashboard/view_materials'>View all study materials</NavLink></li>
+                    {
+                        isTutor ? <>
+                            <li><NavLink to='/dashboard/booked_sessions'>Create Study Session</NavLink></li>
+                            <li><NavLink to='/dashboard/create_notes'>View My Study Sessions</NavLink></li>
+                            <li><NavLink to='/dashboard/manage_notes'>Upload Materials</NavLink></li>
+                            <li><NavLink to='/dashboard/view_materials'>View all Materials</NavLink></li>
+                        </>
+                            :
+                            <>
+                                <li><NavLink to='/dashboard/booked_sessions'>View Booked Sessions</NavLink></li>
+                                <li><NavLink to='/dashboard/create_notes'>Create Note</NavLink></li>
+                                <li><NavLink to='/dashboard/manage_notes'>Manage Notes</NavLink></li>
+                                <li><NavLink to='/dashboard/view_materials'>View All Study Materials</NavLink></li>
+                            </>
+                    }
                 </>
         }
     </ul>
