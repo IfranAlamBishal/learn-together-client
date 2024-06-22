@@ -24,6 +24,7 @@ import CreateSessions from "../Pages/DashboardPages/CreateSessions/CreateSession
 import TutorsStudySessions from "../Pages/DashboardPages/Tutor'sStudySession/TutorsStudySessions";
 import UploadMaterials from "../Pages/DashboardPages/UploadMaterials/UploadMaterials";
 import ViewTutorsMaterials from "../Pages/DashboardPages/ViewTutorsMaterials/ViewTutorsMaterials";
+import AdminRoutes from "./AdminRoutes";
 
 
 export const router = createBrowserRouter([
@@ -105,23 +106,23 @@ export const router = createBrowserRouter([
 
             {
                 path: "allUsers",
-                element: <AllUsers></AllUsers>
+                element: <AdminRoutes><AllUsers></AllUsers></AdminRoutes>
             },
             {
                 path: "pendingSessions",
-                element: <PendingSessions></PendingSessions>
+                element: <AdminRoutes><PendingSessions></PendingSessions></AdminRoutes>
             },
             {
                 path: "approvedSessions",
-                element: <ApprovedSessions></ApprovedSessions>
+                element: <AdminRoutes><ApprovedSessions></ApprovedSessions></AdminRoutes>
             },
             {
                 path: "rejectedSessions",
-                element: <RejectedSessions></RejectedSessions>
+                element: <AdminRoutes><RejectedSessions></RejectedSessions></AdminRoutes>
             },
             {
                 path: "allMaterials",
-                element: <AllMaterials></AllMaterials>
+                element: <AdminRoutes><AllMaterials></AllMaterials></AdminRoutes>
             }
         ]
     }
