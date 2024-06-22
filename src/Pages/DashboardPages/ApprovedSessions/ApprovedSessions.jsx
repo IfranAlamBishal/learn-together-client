@@ -40,7 +40,7 @@ const ApprovedSessions = () => {
 
     
     return (
-        <div className=" my-10">
+        <div className=" my-10 w-5/6 mx-auto">
             <Helmet>
                 <title>Learn Together | Approved Sessions</title>
             </Helmet>

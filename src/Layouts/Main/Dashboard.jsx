@@ -1,15 +1,11 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from '../../../src/assets/Logo/icon.png'
-import useLoggedUser from "../../Hooks/useLoggedUser";
+import useAdmin from "../../Hooks/useAdmin";
 
 
 const Dashboard = () => {
 
-    const loggedUser = useLoggedUser();
-    const userInfo = loggedUser[0];
-    const isAdmin = true;
-
-    console.log(userInfo);
+    const [isAdmin] = useAdmin();
 
     const dashLinks = <ul className=" menu px-1 space-y-2 max-w-56">
         <li><NavLink to='/dashboard/profile'>Profile</NavLink></li>
@@ -37,7 +33,6 @@ const Dashboard = () => {
                     <img src={logo} alt="" className=' w-10 h-10' />
                     <h2 className=" ">Learn <br />Together</h2>
                 </Link>
-                {/* <h2 className=" uppercase my-2">{userInfo.role} Dashboard</h2> */}
                 {dashLinks}
                 <hr className=" w-2/3 mx-auto my-5 border-2 border-black" />
                 <NavLink to='/'>Home</NavLink>
