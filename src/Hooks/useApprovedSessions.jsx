@@ -4,14 +4,14 @@ import useAxios from "./useAxios";
 const useApprovedSessions = () => {
     const axiosSecure = useAxios();
 
-    const { data: approvedSessions=[] } = useQuery({
+    const {refetch, data: approvedSessions=[] } = useQuery({
         queryKey: ['approvedSessions'],
         queryFn: async () => {
             const res = await axiosSecure.get('/approvedSessions')
             return res.data;
         }
     })
-    return approvedSessions;
+    return [approvedSessions , refetch];
 };
 
 export default useApprovedSessions;

@@ -19,7 +19,7 @@ const Register = () => {
     const onSubmit = data => {
 
         const alreadyUser = users.filter(user => user.email == data.email)
-        console.log(alreadyUser);
+        // console.log(alreadyUser);
 
         if (alreadyUser.length == 0) {
             createUser(data.email, data.password)
