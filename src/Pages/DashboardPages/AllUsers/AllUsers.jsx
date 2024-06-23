@@ -20,13 +20,13 @@ const AllUsers = () => {
         axiosSecure.patch(`/user/admin/${id}`, role)
             .then(res => {
                 if (res.data.modifiedCount > 0) {
-                    refetch;
+                    refetch();
                     Swal.fire({
                         title: "Updated!",
                         text: "You've successfully updated the user role.",
                         icon: "success"
                     });
-
+                   
                 }
             });
     }
@@ -48,12 +48,13 @@ const AllUsers = () => {
                 axiosSecure.delete(`/delete_user/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
-                            refetch;
+                            refetch();
                             Swal.fire({
                                 title: "Removed!",
                                 text: "You've successfully removed the user.",
                                 icon: "success"
                             });
+                            
                         }
                     })
 

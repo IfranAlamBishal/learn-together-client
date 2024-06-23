@@ -17,7 +17,7 @@ const CreateNotes = () => {
 
 
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
 
         Swal.fire({
             title: "Are you sure?",
@@ -36,7 +36,7 @@ const CreateNotes = () => {
                     description: data.description
 
                 }
-                console.log(note)
+                // console.log(note)
                 axiosSecure.post('/add_notes', note)
                     .then(() => {
                         Swal.fire({

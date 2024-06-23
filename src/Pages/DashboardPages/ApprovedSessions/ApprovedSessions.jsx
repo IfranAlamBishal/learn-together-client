@@ -25,7 +25,7 @@ const ApprovedSessions = () => {
                 axiosSecure.delete(`/delete_approvedSession/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
-                            refetch;
+                            refetch();
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "You've successfully deleted the session.",
@@ -51,11 +51,11 @@ const ApprovedSessions = () => {
                 </SectionHeader>
             </div>
 
-            <h2 className=" text-3xl font-bold mb-4">Total Users : {approvedSessions.length}</h2>
+            <h2 className=" text-3xl font-bold mb-4">Total Sessions : {approvedSessions.length}</h2>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table table-zebra">
-                        {/* head */}
+                        
                         <thead>
                             <tr className=" bg-gray-500 text-white text-base">
                                 <th></th>
