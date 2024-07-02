@@ -1,8 +1,18 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+         Website name : Learn Together 
+   
+        Live link : https://learn-together-d9eaf.web.app
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Description 
+
+"Learn Together" is a Collaborative Study Platform. This platform connects students and tutors. Students can book study sessions and join classes, while tutors can create and manage sessions.
+
+
+# Key Features 
+
+- User Account : Users can join as a Student, book and join study sessions or can join as    a tutor to create and manage sessions. 
+- Dashboard : 3 differeent dashboard designed for Student, Tutor and Admin.
+- Social Login : User can register using social accounts like Google or Github.
+- Responsive Design : This website is responsive in small, medium and large screens.
